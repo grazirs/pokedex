@@ -2,6 +2,9 @@ import Cards from "./components/Cards";
 import { useState, useEffect } from "react";
 import { getPokemons, getPokemonData } from "./loadData";
 import theme from "./theme";
+import { Text } from "./components/Text";
+import GlobalStyle from "./globalStyle";
+import { ThemeProvider } from "styled-components";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
@@ -30,7 +33,8 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <h1>Pokédex</h1>
+        <GlobalStyle />
+        <Text variant="title">Pokédex</Text>
         <Cards pokemons={pokemons} isLoading={isLoading} />
       </ThemeProvider>
     </>
