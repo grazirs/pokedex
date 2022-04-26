@@ -1,6 +1,7 @@
 import Cards from "./components/Cards";
 import { useState, useEffect } from "react";
 import { getPokemons, getPokemonData } from "./loadData";
+import theme from "./theme";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
@@ -28,8 +29,10 @@ function App() {
 
   return (
     <>
-      <h1>Pokédex</h1>
-      <Cards pokemons={pokemons} isLoading={isLoading} />
+      <ThemeProvider theme={theme}>
+        <h1>Pokédex</h1>
+        <Cards pokemons={pokemons} isLoading={isLoading} />
+      </ThemeProvider>
     </>
   );
 }
