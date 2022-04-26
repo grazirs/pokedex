@@ -1,22 +1,5 @@
-import styled from "styled-components";
-import { themeGet } from "@styled-system/theme-get";
-import { Text } from "./Text";
-
-const CardContent = styled.div`
-  display: flex;
-  height: 200px;
-  border: solid 1px ${themeGet("colors.darkGrey")};
-  justify-content: center;
-  align-items: center;
-  border-radius: ${themeGet("radii.sm")};
-  background-color: ${themeGet("colors.white")};
-  padding: ${themeGet("space.xsm")};
-`;
-
-const Img = styled.img`
-  margin: ${themeGet("space.sm")};
-  width: 90px;
-`;
+import { Text } from "./Text.styles";
+import { CardContent, Img } from "./Card.styles";
 
 const Card = ({ pokemon }) => {
   return (
@@ -26,17 +9,17 @@ const Card = ({ pokemon }) => {
         alt={pokemon.name}
       />
       <div>
-      <Text variant="subtitle">#{pokemon.id}</Text>
-      <Text variant="title"> {pokemon.name}</Text>
-      <>
-        {pokemon.types.map((type, index) => {
-          return (
-            <Text variant="text" key={index}>
-              Type:{type.type.name}{" "}
-            </Text>
-          );
-        })}
-      </>
+        <Text variant="subtitle">#{pokemon.id}</Text>
+        <Text variant="title"> {pokemon.name}</Text>
+        <>
+          {pokemon.types.map((type, index) => {
+            return (
+              <Text variant="text" key={index}>
+                Type:{type.type.name}{" "}
+              </Text>
+            );
+          })}
+        </>
       </div>
     </CardContent>
   );

@@ -2,7 +2,7 @@ import Cards from "./components/Cards";
 import { useState, useEffect } from "react";
 import { getPokemons, getPokemonData } from "./loadData";
 import theme from "./theme";
-import { Text } from "./components/Text";
+import { Text } from "./components/Text.styles";
 import GlobalStyle from "./globalStyle";
 import { ThemeProvider } from "styled-components";
 
