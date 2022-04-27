@@ -3,7 +3,7 @@ import { CardContent, Img } from "./Card.styles";
 
 const Card = ({ pokemon }) => {
   return (
-    <CardContent>
+    <CardContent data-testid="card"> 
       <Img
         src={pokemon.sprites.other.dream_world.front_default}
         alt={pokemon.name}
@@ -15,7 +15,7 @@ const Card = ({ pokemon }) => {
           {pokemon.types.map((type, index) => {
             return (
               <Text variant="text" key={index}>
-                Type:{type.type.name}{" "}
+                Type: {type.type.name}
               </Text>
             );
           })}
