@@ -34,31 +34,32 @@ function App() {
   }, []);
 
   const onSearchHandler = async (pokemon) => {
-    if(!pokemon) {
+    if (!pokemon) {
       return fetchPokemons();
     }
 
-    setIsLoading(true)
-    setNotFound(false)
-    const result = await searchPokemons(pokemon)
-    if(!result) {
-      setNotFound(true)
+    setIsLoading(true);
+    setNotFound(false);
+    const result = await searchPokemons(pokemon);
+    if (!result) {
+      setNotFound(true);
     } else {
-      setPokemons([result])
+      setPokemons([result]);
     }
-    setIsLoading(false)
-
-  }
-
+    setIsLoading(false);
+  };
 
   return (
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Text variant="title">Pokédex</Text>
-        <SearchBar onSearchHandler = {onSearchHandler} />
-        {notFound ? <h3>Pokémon not found, try again </h3>:
-        <Cards pokemons={pokemons} isLoading={isLoading} />}
+        <SearchBar onSearchHandler={onSearchHandler} />
+        {notFound ? (
+          <h3>Pokémon not found, try again </h3>
+        ) : (
+          <Cards pokemons={pokemons} isLoading={isLoading} />
+        )}
       </ThemeProvider>
     </>
   );
