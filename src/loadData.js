@@ -14,6 +14,15 @@ export const getPokemonData = async (url) => {
     const response = await fetch(url);
     return await response.json();
   } catch (error) {
-    console.log("error: ", error);
+    console.log("Error", error);
+  }
+};
+
+export const searchPokemons = async (pokemon) => {
+  try {
+    const response = await fetch(`${API_URL}/${pokemon}`);
+    return await response.json();
+  } catch (error) {
+    console.log("Error", error);
   }
 };
