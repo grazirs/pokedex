@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Input, Button, SearchContainer } from "./SearchBar.styles";
+import { Text } from "./Text.styles";
 
 const SearchBar = ({ onSearchHandler }) => {
   const [search, setSearch] = useState("ditto");
@@ -15,10 +17,11 @@ const SearchBar = ({ onSearchHandler }) => {
   };
 
   return (
-    <>
-      <input type="text" onChange={onChangeHandler} />
-      <button onClick={onClickHandler}>Search</button>
-    </>
+    <SearchContainer>
+      <Text variant="title">Search your favorite pokémon</Text>
+      <Input type="text" onChange={onChangeHandler} />
+      <Button onClick={onClickHandler}>Search</Button>
+    </SearchContainer>
   );
 };
 
