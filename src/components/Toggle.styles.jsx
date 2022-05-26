@@ -6,4 +6,5 @@ export const ToggleBtn = styled.button`
   right: 60px;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 `;

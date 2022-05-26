@@ -8,5 +8,5 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoImg = styled.img`
-  width: 30vw;
+  width: 20vw;
 `;
