@@ -8,8 +8,9 @@ export const CardContent = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: ${themeGet("radii.sm")};
-  background-color: ${themeGet("colors.white")};
+  background-color: ${themeGet("colors.secondaryBackgroundColor")}; 
   padding: ${themeGet("space.xsm")};
+  color: ${themeGet("colors.textColor")}; 
 `;
 
 export const Img = styled.img`

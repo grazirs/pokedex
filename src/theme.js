@@ -43,4 +43,26 @@ const theme = {
   fontWeight,
   radii,
 };
-export default theme;
+
+const themes = {
+  light: {
+    ...theme,
+    colors: {
+      ...theme.colors,
+      mainBackgroundColor: '#f4f4f4', 
+      secondaryBackgroundColor: '#f9f9f9',
+      textColor: '#222'
+    }
+  },
+  dark: {
+    ...theme,
+    colors: {
+      ...theme.colors,
+      mainBackgroundColor: '#222',
+      secondaryBackgroundColor: '#555',
+      textColor: '#f9f9f9'
+    }
+  }
+}
+
+export default themes;
