@@ -1,16 +1,36 @@
 import Cards from "./components/Cards";
 import { useState, useEffect } from "react";
 import { getPokemons, getPokemonData, searchPokemons } from "./loadData";
-import theme from "./theme";
-import { Text } from "./components/Text.styles";
+import themes from "./theme";
 import GlobalStyle from "./globalStyle";
 import { ThemeProvider } from "styled-components";
 import SearchBar from "./components/SearchBar";
+import Toggle from "./components/Toggle";
+import Logo from "./components/Logo";
+
+const useTheme = () => {
+  const localStorageTheme = () => {
+    const theme = localStorage.getItem('body');
+      return theme ? theme : 'light';
+  }
+  const [currentTheme, setCurrentTheme] = useState(localStorageTheme());
+
+  useEffect(() => {
+    localStorage.setItem('body', currentTheme);
+  },[currentTheme]);
+
+  const switchTheme = () => {
+    currentTheme === 'light' ? setCurrentTheme('dark') : setCurrentTheme
+    ('light')
+  }
+  return { currentTheme, switchTheme }
+}
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
+  const { currentTheme, switchTheme } = useTheme();
 
   const fetchPokemons = async () => {
     try {
@@ -51,9 +71,10 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themes[currentTheme]}>
         <GlobalStyle />
-        <Text variant="title">Pokédex</Text>
+        <Logo/>
+        <Toggle switchTheme={switchTheme} currentTheme={currentTheme} />
         <SearchBar onSearchHandler={onSearchHandler} />
         {notFound ? (
           <h3>Pokémon not found, try again </h3>
