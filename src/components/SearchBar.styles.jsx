@@ -21,6 +21,7 @@ background-color:${themeGet("colors.darkBlue")};
 color:${themeGet("colors.white")};
 font-size: ${themeGet("fontSizes.textButton")};
 right:775px;
+cursor: pointer;
 `;
 
 export const SearchContainer = styled.div`
