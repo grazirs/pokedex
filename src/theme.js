@@ -22,7 +22,7 @@ const space = {
 
 const fontSizes = {
   title: "30px",
-  subtitle: "18px",
+  subtitle: "20px",
   text: "16px",
   textButton: "14px",
 };

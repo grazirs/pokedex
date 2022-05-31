@@ -5,21 +5,21 @@ describe("<Card/>", () => {
   const setup = () => {
     const cardDetails = {
       id: '1',
-      name: 'Bulbasaur', 
+      name: 'Bulbasaur',
       types: [{
         type: {
           name: "grass"
         }
-      }], 
+      }],
       sprites: {
         other: {
           dream_world: {
-            front_default:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
           }
         }
       }
     };
-    render(<Card  pokemon={cardDetails}/> );
+    render(<Card pokemon={cardDetails} />);
     return { cardDetails };
   }
 
@@ -41,8 +41,3 @@ describe("<Card/>", () => {
     expect(pokemonType).toBeInTheDocument();
   })
 });
-
-
-
-
-
