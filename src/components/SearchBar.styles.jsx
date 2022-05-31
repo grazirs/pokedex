@@ -3,7 +3,7 @@ import { themeGet } from "@styled-system/theme-get";
 
 export const Input = styled.input`
 width: 350px;
-height: 38px;
+height: 42px;
 border-radius: ${themeGet("radii.sm")} 0 0 ${themeGet("radii.sm")};
 border: solid 2px ${themeGet("colors.darkBlue")};
 outline: none;
