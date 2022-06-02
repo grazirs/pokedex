@@ -8,7 +8,7 @@ const SelectByType = ({ pokemonsTypes, onSelectHandler }) => {
   return (
     <>
       <Select onChange={onChangeHandler} name="pokemons-type" id="type">
-        <Option value="">Select a type</Option>
+        <Option value="Select a type">Select a type</Option>
         {pokemonsTypes.map((type) => {
           return (
             <Option key={type} value={type}>{type}</Option>
