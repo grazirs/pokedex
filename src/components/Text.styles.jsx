@@ -5,7 +5,9 @@ import { themeGet } from "@styled-system/theme-get";
 export const Text = styled.p`
   color: ${themeGet("colors.textColor")}; 
   font-family: ${themeGet("fonts.mainFont")};
-  font-weight: ${themeGet("fontWeights.bold")};
+  font-weight: ${themeGet("fontWeight.semiBold")};
+  padding: calc(${themeGet("space.xsm")}/5);
+  text-transform: capitalize; 
   ${variant({
     variants: {
       title: {
@@ -21,6 +23,11 @@ export const Text = styled.p`
       textButton: {
         fontSize: "textButton",
       },
+      textUnit: {
+        fontSize: "text",
+        fontWeight: "regular",
+        textTransform: "lowercase",
+      }
     },
   })};
 `;

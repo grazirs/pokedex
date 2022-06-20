@@ -5,7 +5,7 @@ export const PaginationContainer = styled.div`
 display: flex;
 justify-content: right;
 align-items: center;
-margin: ${themeGet("space.sm")};
+margin: ${themeGet("space.lg")};
 `;
 
 export const PaginationBtn = styled.button`

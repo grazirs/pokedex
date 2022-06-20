@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Input, Button, SearchContainer } from "./SearchBar.styles";
 
 const SearchBar = ({ onSearchHandler, search, setSearch }) => {
