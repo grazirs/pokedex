@@ -10,6 +10,7 @@ import Logo from "./components/Logo";
 import { Text } from "./components/Text.styles";
 import SelectByType from "./components/SelectByType";
 import { Container } from "./components/Container.styles";
+import PokemonDetails from "./components/PokemonDetails";
 
 const useTheme = () => {
   const localStorageTheme = () => {
@@ -25,6 +26,7 @@ const useTheme = () => {
   const switchTheme = () => {
     currentTheme === 'light' ? setCurrentTheme('dark') : setCurrentTheme
       ('light')
+      console.log(switchTheme)
   }
   return { currentTheme, switchTheme }
 }
@@ -39,8 +41,19 @@ function App() {
   const { currentTheme, switchTheme } = useTheme();
   const [search, setSearch] = useState("");
   const [pokemonsTypes, setPokemonsTypes] = useState([]);
+  const [evolution, setEvolution] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
 
-  console.log(search)
+  const openModal = (pokemon) => {
+    setSelectedPokemon(pokemon);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   const fetchPokemons = async () => {
     try {
       setIsLoading(true);
@@ -123,7 +136,10 @@ function App() {
         {notFound ? (
           <Text variant="subtitle">Pokémon not found, try again </Text>
         ) : (
-          <Cards pokemons={pokemons} isLoading={isLoading} page={page} setPage={setPage} totalPages={totalPages} />
+          <>
+            <Cards pokemons={pokemons} isLoading={isLoading} page={page} setPage={setPage} totalPages={totalPages} openModal={openModal}/>
+            { isOpen &&  <PokemonDetails pokemon={selectedPokemon} closeModal={closeModal} isOpen={isOpen}/>} 
+          </>
         )}
       </ThemeProvider>
     </>
