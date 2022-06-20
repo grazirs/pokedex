@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import { FiLoader } from "react-icons/fi";
 import { Text } from "./Text.styles";
 
-const Cards = ({ pokemons, isLoading, page, totalPages, setPage }) => {
+const Cards = ({ pokemons, isLoading, page, totalPages, setPage, openModal }) => {
   const onBeforeClickHandler = () => {
     if(page > 0) return setPage(page - 1)
   }
@@ -26,7 +26,7 @@ const Cards = ({ pokemons, isLoading, page, totalPages, setPage }) => {
           <>
             {pokemons &&
               pokemons.map((pokemon) => (
-                <Card key={pokemon.id} pokemon={pokemon} />
+                <Card key={pokemon.id} pokemon={pokemon} openModal={openModal}/>
               ))}
           </>
         )}

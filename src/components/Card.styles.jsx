@@ -11,9 +11,15 @@ export const CardContent = styled.div`
   background-color: ${themeGet("colors.secondaryBackgroundColor")}; 
   padding: ${themeGet("space.xsm")};
   color: ${themeGet("colors.textColor")}; 
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    transition: all 0.3s;
+    transform: scale(1.05)
+  }
 `;
 
-export const Img = styled.img`
+export const ImgCard = styled.img`
   margin: ${themeGet("space.sm")};
   width: 90px;
 `;
