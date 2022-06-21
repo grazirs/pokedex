@@ -2,16 +2,17 @@
 
 - This is a project (for study purposes only) using React hooks and a public API: https://pokeapi.co/
 - You can search a pokemon by name or id in the search bar
-- You can search pokemons by type
+- You can search pokemons by type by selecting the one of the options
 - When clicked on a pokemon card, it opens a modal with the pokemon details
-- You can choose dark/light mode version by clicking on a toogle.
+- You can choose dark/light mode version by clicking on a toogle
 
 ## The libs
 This project uses:
 
 - Styled Components
-- ThemeGet from styled system
-- React modal
+- ThemeGet and css properties from styled system
+- React Modal
+- React Icons
 
 ## To run:
 ``` npm start ```
