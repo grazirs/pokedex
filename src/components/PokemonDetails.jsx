@@ -2,7 +2,6 @@ import Modal from "react-modal";
 import {
   ButtonCloseDetails,
   DetailsContainer,
-  ColumnDetail,
   IdContainer,
   ImagesContainer,
   ImgModal,
@@ -10,12 +9,19 @@ import {
   TextsContainer,
   BarContainer,
   ImagesTitle,
+  ColumnDetail,
+  ResponsiveDetail,
 } from "./PokemonDetails.styles";
-import { customStyles } from "./PokemonDetails.styles";
 import { Text } from "./Text.styles";
 import { MdOutlineClose } from "react-icons/md";
+import "./Modal.css";
+import { useEffect } from "react";
 
 const PokemonDetails = ({ pokemon, isOpen, closeModal }) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => (document.body.style.overflow = "unset");
+  }, []);
   return (
     <>
       <Modal
@@ -23,10 +29,10 @@ const PokemonDetails = ({ pokemon, isOpen, closeModal }) => {
         onRequestClose={closeModal}
         ariaHideApp={false}
         contentLabel="Selected Option"
-        style={customStyles}
         shouldCloseOnEsc={true}
         shouldCloseOnOverlayClick={true}
         closeTimeoutMS={20}
+        className="modal"
       >
         <ModalContainer>
           <ButtonCloseDetails onClick={closeModal}>
@@ -47,38 +53,42 @@ const PokemonDetails = ({ pokemon, isOpen, closeModal }) => {
               <Text variant="subtitle">#{pokemon.id}</Text>
             </IdContainer>
             <DetailsContainer>
-              <ColumnDetail>
-                <Text variant="subtitle">Name</Text>
-                <Text variant="text">{pokemon.name}</Text>
-                <Text variant="subtitle">Base Experience</Text>
-                <Text variant="text">{pokemon.base_experience}</Text>
-              </ColumnDetail>
-              <ColumnDetail>
-                <Text variant="subtitle">Height</Text>
-                <Text variant="textUnit">{pokemon.height} m</Text>
-                <Text variant="subtitle">Weight</Text>
-                <Text variant="textUnit">{pokemon.weight} kg</Text>
-              </ColumnDetail>
-              <ColumnDetail>
-                <Text variant="subtitle">Abilities</Text>
-                {pokemon.abilities.map((ability) => {
-                  return (
-                    <>
-                      <Text variant="text">◦ {ability.ability.name}</Text>
-                    </>
-                  );
-                })}
-              </ColumnDetail>
-              <ColumnDetail>
-                <Text variant="subtitle">Held Items</Text>
-                {pokemon.held_items.map((item) => {
-                  return (
-                    <>
-                      <Text variant="text">◦ {item.item.name}</Text>
-                    </>
-                  );
-                })}
-              </ColumnDetail>
+              <ResponsiveDetail>
+                <ColumnDetail>
+                  <Text variant="subtitle">Name</Text>
+                  <Text variant="text">{pokemon.name}</Text>
+                  <Text variant="subtitle">Base Exp</Text>
+                  <Text variant="text">{pokemon.base_experience}</Text>
+                </ColumnDetail>
+                <ColumnDetail>
+                  <Text variant="subtitle">Height</Text>
+                  <Text variant="textUnit">{pokemon.height} m</Text>
+                  <Text variant="subtitle">Weight</Text>
+                  <Text variant="textUnit">{pokemon.weight} kg</Text>
+                </ColumnDetail>
+              </ResponsiveDetail>
+              <ResponsiveDetail>
+                <ColumnDetail>
+                  <Text variant="subtitle">Abilities</Text>
+                  {pokemon.abilities.map((ability) => {
+                    return (
+                      <>
+                        <Text variant="text">◦ {ability.ability.name}</Text>
+                      </>
+                    );
+                  })}
+                </ColumnDetail>
+                <ColumnDetail>
+                  <Text variant="subtitle">Held Items</Text>
+                  {pokemon.held_items.map((item) => {
+                    return (
+                      <>
+                        <Text variant="text">◦ {item.item.name}</Text>
+                      </>
+                    );
+                  })}
+                </ColumnDetail>
+              </ResponsiveDetail>
             </DetailsContainer>
           </TextsContainer>
           {pokemon.stats.map((stat) => {
