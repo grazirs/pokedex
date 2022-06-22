@@ -2,31 +2,41 @@ import styled from "styled-components";
 import { themeGet } from "@styled-system/theme-get";
 
 export const Input = styled.input`
-width: 350px;
-height: 42px;
-border-radius: ${themeGet("radii.sm")} 0 0 ${themeGet("radii.sm")};
-border: solid 2px ${themeGet("colors.darkBlue")};
-outline: none;
-padding: ${themeGet("space.none")} ${themeGet("space.xsm")};
-font-size: ${themeGet("fontSizes.text")};
-margin-left: ${themeGet("space.sm")};
+  width: 350px;
+  height: 42px;
+  border-radius: ${themeGet("radii.sm")} 0 0 ${themeGet("radii.sm")};
+  border: solid 2px ${themeGet("colors.darkBlue")};
+  outline: none;
+  padding: ${themeGet("space.none")} ${themeGet("space.xsm")};
+  font-size: ${themeGet("fontSizes.text")};
+  margin-left: ${themeGet("space.sm")};
+  ::placeholder,
+  ::-webkit-input-placeholder {
+    color: ${themeGet("colors.black")}
+  }
+  :-ms-input-placeholder {
+    color: ${themeGet("colors.black")}
+  }
+  @media (max-width: ${themeGet("screenSizes.laptop")}) {
+    margin-left: 0;
+    width: 245px;
+  }
 `;
 
 export const Button = styled.button`
-width: 100px;
-height: 42px;
-border-radius: 0 ${themeGet("radii.sm")} ${themeGet("radii.sm")} 0;
-border: solid 2px ${themeGet("colors.darkBlue")};
-background-color:${themeGet("colors.darkBlue")};
-color:${themeGet("colors.white")};
-font-size: ${themeGet("fontSizes.textButton")};
-right:775px;
-cursor: pointer;
+  width: 100px;
+  height: 42px;
+  border-radius: 0 ${themeGet("radii.sm")} ${themeGet("radii.sm")} 0;
+  border: solid 2px ${themeGet("colors.darkBlue")};
+  background-color: ${themeGet("colors.darkBlue")};
+  color: ${themeGet("colors.white")};
+  font-size: ${themeGet("fontSizes.textButton")};
+  right: 775px;
+  cursor: pointer;
 `;
 
 export const SearchContainer = styled.div`
-display:flex;
-justify-content: center;
-margin: ${themeGet("space.sm")};
+  display: flex;
+  justify-content: center;
+  margin: ${themeGet("space.sm")};
 `;
-

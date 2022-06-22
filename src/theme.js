@@ -24,8 +24,9 @@ const space = {
 const fontSizes = {
   title: "30px",
   subtitle: "20px",
-  text: "18px",
+  text: "16px",
   textButton: "14px",
+
 };
 
 const fontWeight = {
@@ -33,11 +34,22 @@ const fontWeight = {
   semiBold: "600",
   bold:"700",
 };
+
 const radii = {
   sm: "8px",
   md: "20px",
   lg: "50px",
 };
+
+const screenSizes = {
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '425px',
+  tablet: '768px',
+  laptop: '1024px',
+  laptopL: '1440px',
+  desktop: '2560px'
+}
 
 const theme = {
   colors,
@@ -46,6 +58,7 @@ const theme = {
   fontSizes,
   fontWeight,
   radii,
+  screenSizes,
 };
 
 const themes = {

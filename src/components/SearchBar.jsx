@@ -14,7 +14,7 @@ const SearchBar = ({ onSearchHandler, search, setSearch }) => {
 
   return (
     <SearchContainer>
-      <Input type="search" onChange={onChangeHandler} placeholder="Please enter name or pokémon ID"/>
+      <Input type="search" onChange={onChangeHandler} placeholder="Please enter name or pokémon ID" placeholderTextColor = 'black'/>
       <Button onClick={onClickHandler}>Search</Button>
     </SearchContainer>
   );

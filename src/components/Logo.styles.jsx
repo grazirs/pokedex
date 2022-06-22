@@ -9,4 +9,7 @@ export const LogoContainer = styled.div`
 
 export const LogoImg = styled.img`
   width: 20vw;
+  @media (max-width:  ${themeGet("screenSizes.laptop")}) {
+    width: 250px;
+  }
 `;

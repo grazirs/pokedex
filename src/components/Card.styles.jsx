@@ -22,4 +22,7 @@ export const CardContent = styled.div`
 export const ImgCard = styled.img`
   margin: ${themeGet("space.sm")};
   width: 90px;
+  @media (min-width: ${themeGet("screenSizes.mobileS")}) and (max-width: ${themeGet("screenSizes.mobileL")}) {
+    margin-right:${themeGet("space.lg")};
+  }
 `;

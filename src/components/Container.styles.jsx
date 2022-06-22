@@ -6,4 +6,8 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: ${themeGet("space.xsm")};
+  @media (max-width:  ${themeGet("screenSizes.laptop")}) {
+    flex-direction: column;
+    margin: ${themeGet("space.lg")};
+  }
 `;

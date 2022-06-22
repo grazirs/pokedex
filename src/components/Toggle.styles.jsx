@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import themeGet from "@styled-system/theme-get";
 
 export const ToggleBtn = styled.button`
   position: absolute;
@@ -7,4 +8,7 @@ export const ToggleBtn = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  @media (max-width:${themeGet("screenSizes.laptop")}) {
+    right: 20px;
+  }
 `;
