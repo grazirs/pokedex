@@ -10,7 +10,7 @@
 This project uses:
 
 - Styled Components
-- ThemeGet and css properties from styled system
+- Styled System
 - React Modal
 - React Icons
 
