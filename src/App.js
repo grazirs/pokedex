@@ -11,25 +11,7 @@ import { Text } from "./components/Text.styles";
 import SelectByType from "./components/SelectByType";
 import { Container } from "./components/Container.styles";
 import PokemonDetails from "./components/PokemonDetails";
-
-const useTheme = () => {
-  const localStorageTheme = () => {
-    const theme = localStorage.getItem('body');
-    return theme ? theme : 'light';
-  }
-  const [currentTheme, setCurrentTheme] = useState(localStorageTheme());
-
-  useEffect(() => {
-    localStorage.setItem('body', currentTheme);
-  }, [currentTheme]);
-
-  const switchTheme = () => {
-    currentTheme === 'light' ? setCurrentTheme('dark') : setCurrentTheme
-      ('light')
-      console.log(switchTheme)
-  }
-  return { currentTheme, switchTheme }
-}
+import { useTheme } from "./hooks/useTheme";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
