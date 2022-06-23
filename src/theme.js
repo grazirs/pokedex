@@ -3,10 +3,11 @@ const colors = {
   lightGrey: "#f3f3f3",
   darkGrey: "#a9a9a9",
   purple: "#5e6ec9",
-  darkBlue: "rgb(17, 97, 201)",
+  darkBlue: "#1161c9",
   grey: "#c5c5c5",
   black: "#242428",
   white: "#fbfbfb",
+  yellow: "#ffff00",
 };
 
 const font = {
@@ -22,18 +23,33 @@ const space = {
 
 const fontSizes = {
   title: "30px",
-  subtitle: "18px",
+  subtitle: "20px",
   text: "16px",
   textButton: "14px",
+
 };
 
 const fontWeight = {
   regular: "400",
+  semiBold: "600",
+  bold:"700",
 };
+
 const radii = {
   sm: "8px",
   md: "20px",
+  lg: "50px",
 };
+
+const screenSizes = {
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '425px',
+  tablet: '768px',
+  laptop: '1024px',
+  laptopL: '1440px',
+  desktop: '2560px'
+}
 
 const theme = {
   colors,
@@ -42,6 +58,7 @@ const theme = {
   fontSizes,
   fontWeight,
   radii,
+  screenSizes,
 };
 
 const themes = {
@@ -51,7 +68,8 @@ const themes = {
       ...theme.colors,
       mainBackgroundColor: '#f4f4f4', 
       secondaryBackgroundColor: '#f9f9f9',
-      textColor: '#222'
+      textColor: '#222',
+      idBackgroundColor: '#c7ebf2',
     }
   },
   dark: {
@@ -60,7 +78,8 @@ const themes = {
       ...theme.colors,
       mainBackgroundColor: '#222',
       secondaryBackgroundColor: '#555',
-      textColor: '#f9f9f9'
+      textColor: '#f9f9f9',
+      idBackgroundColor: '#1161c9',
     }
   }
 }

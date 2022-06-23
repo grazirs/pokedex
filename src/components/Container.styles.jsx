@@ -1,15 +1,13 @@
 import styled from "styled-components";
 import { themeGet } from "@styled-system/theme-get";
 
-export const LogoContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: ${themeGet("space.sm")};;
-`;
-
-export const LogoImg = styled.img`
-  width: 20vw;
+  align-items: center;
+  padding: ${themeGet("space.xsm")};
   @media (max-width:  ${themeGet("screenSizes.laptop")}) {
-    width: 250px;
+    flex-direction: column;
+    margin: ${themeGet("space.lg")};
   }
 `;

@@ -1,0 +1,42 @@
+.modal {
+  inset: 50% auto auto 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50,-50%);
+  border-radius: 8px;
+  border: 20px solid rgba(128, 128, 128, 0.3);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  width: 45%;
+  outline: none;
+  overflow: auto;
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+  opacity: 0;
+}
+
+@media (min-width: 670px) and (max-width: 1024px) {
+  .modal {
+    width:100%;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 669px) {
+  .modal {
+    width: 100%;
+    height: 99%;
+  }
+}
