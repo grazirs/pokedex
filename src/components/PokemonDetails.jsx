@@ -18,6 +18,7 @@ import "./Modal.css";
 import { useEffect } from "react";
 
 const PokemonDetails = ({ pokemon, isOpen, closeModal }) => {
+  console.log(pokemon)
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => (document.body.style.overflow = "unset");
@@ -43,10 +44,10 @@ const PokemonDetails = ({ pokemon, isOpen, closeModal }) => {
             <Text variant="subtitle">Shiny</Text>
           </ImagesTitle>
           <ImagesContainer>
-            <ImgModal src={pokemon.sprites.front_default} alt={pokemon.name} />
-            <ImgModal src={pokemon.sprites.back_default} alt={pokemon.name} />
-            <ImgModal src={pokemon.sprites.front_shiny} alt={pokemon.name} />
-            <ImgModal src={pokemon.sprites.back_shiny} alt={pokemon.name} />
+            <ImgModal src={pokemon.standardSprites[0]} alt={pokemon.name} />
+            <ImgModal src={pokemon.standardSprites[1]} alt={pokemon.name} />
+            <ImgModal src={pokemon.shinySprites[0]} alt={pokemon.name} />
+            <ImgModal src={pokemon.shinySprites[1]} alt={pokemon.name} />
           </ImagesContainer>
           <TextsContainer>
             <IdContainer>
@@ -58,7 +59,7 @@ const PokemonDetails = ({ pokemon, isOpen, closeModal }) => {
                   <Text variant="subtitle">Name</Text>
                   <Text variant="text">{pokemon.name}</Text>
                   <Text variant="subtitle">Base Exp</Text>
-                  <Text variant="text">{pokemon.base_experience}</Text>
+                  <Text variant="text">{pokemon.baseExp}</Text>
                 </ColumnDetail>
                 <ColumnDetail>
                   <Text variant="subtitle">Height</Text>
@@ -73,17 +74,17 @@ const PokemonDetails = ({ pokemon, isOpen, closeModal }) => {
                   {pokemon.abilities.map((ability) => {
                     return (
                       <>
-                        <Text variant="text">◦ {ability.ability.name}</Text>
+                        <Text variant="text" key={ability}>◦ {ability}</Text>
                       </>
                     );
                   })}
                 </ColumnDetail>
                 <ColumnDetail>
                   <Text variant="subtitle">Held Items</Text>
-                  {pokemon.held_items.map((item) => {
+                  {pokemon.heldItems.map((item) => {
                     return (
                       <>
-                        <Text variant="text">◦ {item.item.name}</Text>
+                        <Text variant="text" key={item}>◦ {item }</Text>
                       </>
                     );
                   })}
@@ -94,8 +95,8 @@ const PokemonDetails = ({ pokemon, isOpen, closeModal }) => {
           {pokemon.stats.map((stat) => {
             return (
               <BarContainer>
-                <progress value={stat.base_stat} max={100}></progress>
-                <Text variant="text">{stat.stat.name}</Text>
+                <progress value={stat.value} max={100}></progress>
+                <Text variant="text" key={stat.name}>{stat.name}</Text>
               </BarContainer>
             );
           })}
