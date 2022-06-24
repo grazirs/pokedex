@@ -7,10 +7,9 @@ import { Pokemon, PokemonStat } from "../pokemon";
 
 const Card = ({ initialPokemonData, openModal }) => {
   const [pokemon, setPokemon] = useState(initialPokemonData);
-
   const fetchDetails = async () => {
     const details = await getPokemonData(pokemon.url);
-    
+
     const types = details.types.map((type) => type.type.name);
     const abilities = details.abilities.map((ability) => ability.ability.name);
     const heldItems = details.held_items.map((item) => item.item.name);
