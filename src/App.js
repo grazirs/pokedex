@@ -2,8 +2,7 @@ import Cards from "./components/Cards";
 import { useState, useEffect } from "react";
 import {
   getPokemons,
-  getPokemonData,
-  searchPokemons,
+  searchPokemon,
   loadPokemonsTypes,
   filterPokemonsByType,
 } from "./loadData";
@@ -18,7 +17,7 @@ import SelectByType from "./components/SelectByType";
 import { Container } from "./components/Container.styles";
 import PokemonDetails from "./components/PokemonDetails";
 import { useTheme } from "./hooks/useTheme";
-import { Pokemon } from "./pokemon";
+import { Pokemon, PokemonStat } from "./pokemon";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
@@ -49,7 +48,7 @@ function App() {
       setNotFound(false);
       const data = await getPokemons(ITENS_PER_PAGE, ITENS_PER_PAGE * page);
       const results = data.results.map((element)=> new Pokemon(
-        element.id,
+        null,
         element.name,
         [],
         null,
@@ -87,11 +86,30 @@ function App() {
     }
     setIsLoading(true);
     setNotFound(false);
-    const result = await searchPokemons(pokemon);
+    const result = await searchPokemon(pokemon);
+
+    const types = result.types.map((type) => type.type.name);
+    const abilities = result.abilities.map((ability) => ability.ability.name);
+    const heldItems = result.held_items.map((item) => item.item.name);
+    const stats = result.stats.map((stat) => new PokemonStat(stat.stat.name, stat.base_stat));
     if (!result) {
       setNotFound(true);
     } else {
-      setPokemons([result]);
+      setPokemons([new Pokemon(
+        result.id,
+        result.name,
+        types,
+        result.sprites.other.dream_world.front_default,
+        pokemon.url,
+        [result.sprites.front_default, result.sprites.back_default],
+        [result.sprites.front_shiny, result.sprites.back_shiny],
+        result.weight,
+        result.height,
+        result.base_experience,
+        abilities,
+        heldItems,
+        stats,
+      )]);
     }
     setIsLoading(false);
   };
@@ -103,12 +121,16 @@ function App() {
     if (!result) {
       setNotFound(true);
     } else {
-      const sanitizedResult = result.pokemon.map((element) => element.pokemon);
-      const promises = sanitizedResult.map(async (pokemon) => {
-        return await getPokemonData(pokemon.url);
-      });
-      const enrichedResult = await Promise.all(promises);
-      setPokemons(enrichedResult);
+
+      const results = result.pokemon.map((element)=> new Pokemon(
+        null,
+        element.pokemon.name,
+        [],
+        null,
+        element.pokemon.url
+      ));
+
+      setPokemons(results);
     }
     setIsLoading(false);
   };
