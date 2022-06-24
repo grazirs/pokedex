@@ -26,7 +26,7 @@ const Cards = ({ pokemons, isLoading, page, totalPages, setPage, openModal }) =>
           <>
             {pokemons &&
               pokemons.map((pokemon) => (
-                <Card key={pokemon.id} pokemon={pokemon} openModal={openModal}/>
+                <Card key={pokemon.id} initialPokemonData={pokemon} openModal={openModal}/>
               ))}
           </>
         )}

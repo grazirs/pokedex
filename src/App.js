@@ -48,17 +48,13 @@ function App() {
       setIsLoading(true);
       setNotFound(false);
       const data = await getPokemons(ITENS_PER_PAGE, ITENS_PER_PAGE * page);
-      const promises = data.results.map(async (pokemon) => {
-        const response = await getPokemonData(pokemon.url);
-        const types = response.types.map((type) => type.type.name);
-        return new Pokemon(
-          response.id,
-          response.name,
-          types,
-          response.sprites.other.dream_world.front_default
-        );
-      });
-      const results = await Promise.all(promises);
+      const results = data.results.map((element)=> new Pokemon(
+        element.id,
+        element.name,
+        [],
+        null,
+        element.url
+      ));
       setPokemons(results);
       setIsLoading(false);
       setTotalPages(Math.ceil(data.count / ITENS_PER_PAGE));
