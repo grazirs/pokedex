@@ -1,6 +1,12 @@
 import Cards from "./components/Cards";
 import { useState, useEffect } from "react";
-import { getPokemons, getPokemonData, searchPokemons, loadPokemonsTypes, filterPokemonsByType } from "./loadData";
+import {
+  getPokemons,
+  getPokemonData,
+  searchPokemons,
+  loadPokemonsTypes,
+  filterPokemonsByType,
+} from "./loadData";
 import themes from "./theme";
 import GlobalStyle from "./globalStyle";
 import { ThemeProvider } from "styled-components";
@@ -12,13 +18,14 @@ import SelectByType from "./components/SelectByType";
 import { Container } from "./components/Container.styles";
 import PokemonDetails from "./components/PokemonDetails";
 import { useTheme } from "./hooks/useTheme";
+import { Pokemon } from "./pokemon";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [page, setPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0)
+  const [totalPages, setTotalPages] = useState(0);
   const ITENS_PER_PAGE = 24;
   const { currentTheme, switchTheme } = useTheme();
   const [search, setSearch] = useState("");
@@ -42,7 +49,14 @@ function App() {
       setNotFound(false);
       const data = await getPokemons(ITENS_PER_PAGE, ITENS_PER_PAGE * page);
       const promises = data.results.map(async (pokemon) => {
-        return await getPokemonData(pokemon.url);
+        const response = await getPokemonData(pokemon.url);
+        const types = response.types.map((type) => type.type.name);
+        return new Pokemon(
+          response.id,
+          response.name,
+          types,
+          response.sprites.other.dream_world.front_default
+        );
       });
       const results = await Promise.all(promises);
       setPokemons(results);
@@ -57,14 +71,14 @@ function App() {
     try {
       const dataType = await loadPokemonsTypes();
       const promiseType = dataType.results.map(async (type) => {
-        return await type.name
+        return await type.name;
       });
       const resultsType = await Promise.all(promiseType);
-      setPokemonsTypes(resultsType);;
+      setPokemonsTypes(resultsType);
     } catch (error) {
       console.log("requesting error", error);
     }
-  }
+  };
 
   useEffect(() => {
     fetchPokemons();
@@ -93,7 +107,7 @@ function App() {
     if (!result) {
       setNotFound(true);
     } else {
-      const sanitizedResult = result.pokemon.map((element) => element.pokemon)
+      const sanitizedResult = result.pokemon.map((element) => element.pokemon);
       const promises = sanitizedResult.map(async (pokemon) => {
         return await getPokemonData(pokemon.url);
       });
@@ -101,7 +115,7 @@ function App() {
       setPokemons(enrichedResult);
     }
     setIsLoading(false);
-  }
+  };
 
   return (
     <>
@@ -111,16 +125,38 @@ function App() {
         <Toggle switchTheme={switchTheme} currentTheme={currentTheme} />
         <Container>
           <Text variant="subtitle">Select the pokémons by type: </Text>
-          <SelectByType onSelectHandler={onSelectHandler} pokemonsTypes={pokemonsTypes} />
-          <Text variant="subtitle">or Search your favorite pokémon by name or id: </Text>
-          <SearchBar onSearchHandler={onSearchHandler} search={search} setSearch={setSearch} />
+          <SelectByType
+            onSelectHandler={onSelectHandler}
+            pokemonsTypes={pokemonsTypes}
+          />
+          <Text variant="subtitle">
+            or Search your favorite pokémon by name or id:{" "}
+          </Text>
+          <SearchBar
+            onSearchHandler={onSearchHandler}
+            search={search}
+            setSearch={setSearch}
+          />
         </Container>
         {notFound ? (
           <Text variant="subtitle">Pokémon not found, try again </Text>
         ) : (
           <>
-            <Cards pokemons={pokemons} isLoading={isLoading} page={page} setPage={setPage} totalPages={totalPages} openModal={openModal}/>
-            { isOpen &&  <PokemonDetails pokemon={selectedPokemon} closeModal={closeModal} isOpen={isOpen}/>} 
+            <Cards
+              pokemons={pokemons}
+              isLoading={isLoading}
+              page={page}
+              setPage={setPage}
+              totalPages={totalPages}
+              openModal={openModal}
+            />
+            {isOpen && (
+              <PokemonDetails
+                pokemon={selectedPokemon}
+                closeModal={closeModal}
+                isOpen={isOpen}
+              />
+            )}
           </>
         )}
       </ThemeProvider>

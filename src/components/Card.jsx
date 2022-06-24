@@ -6,7 +6,7 @@ const Card = ({ pokemon, openModal }) => {
     <>
       <CardContent data-testid="card" onClick={()=> openModal(pokemon)}>
         <ImgCard
-          src={pokemon.sprites.other.dream_world.front_default}
+          src={pokemon.image}
           alt={pokemon.name}
         />
         <div>
@@ -16,7 +16,7 @@ const Card = ({ pokemon, openModal }) => {
             {pokemon.types.map((type, index) => {
               return (
                 <Text variant="text" key={index}>
-                  Type: {type.type.name}
+                  Type: {type}
                 </Text>
               );
             })}
