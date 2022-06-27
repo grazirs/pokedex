@@ -1,26 +1,20 @@
 import { render, screen } from "@testing-library/react";
 import Card from "../components/Card";
+import { Pokemon } from "../pokemon";
+import { mockPokemons } from "./mock_data/mockPokemons";
+import * as loadDataModule from "../loadData";
 
 describe("<Card/>", () => {
   const setup = () => {
-    const cardDetails = {
-      id: '1',
-      name: 'Bulbasaur',
-      types: [{
-        type: {
-          name: "grass"
-        }
-      }],
-      sprites: {
-        other: {
-          dream_world: {
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-          }
-        }
-      }
-    };
-    render(<Card pokemon={cardDetails} />);
-    return { cardDetails };
+    const pokemon = new Pokemon(
+      1,
+      "bulbasaur",
+      [],
+      null,
+      "https://pokeapi.co/api/v2/pokemon/bulbasaur"
+      );
+    render(<Card initialPokemonData={pokemon} />);
+    return pokemon;
   }
 
   it("should render cards on the screen", () => {
@@ -29,15 +23,14 @@ describe("<Card/>", () => {
     expect(card).toBeInTheDocument();
   })
 
-  it('should render a card with data details', () => {
-    const { cardDetails } = setup();
-    const pokemonImg = screen.getByRole('img', { name: /bulbasaur/i });
-    const pokemonId = screen.getByText(`#${cardDetails.id}`);
-    const pokemonName = screen.getByText(cardDetails.name);
-    const pokemonType = screen.getByText(`Type: ${cardDetails.types[0].type.name}`);
-    expect(pokemonImg).toBeInTheDocument();
+  it('should render a card with initial pokemon details', () => {
+    const pokemon  = setup();
+    jest.spyOn(loadDataModule, "getPokemonData").mockImplementation(async (url) => {
+      console.log(url)
+    })
+    const pokemonId = screen.getByText(`#${pokemon.id}`);
+    const pokemonName = screen.getByText(pokemon.name);
     expect(pokemonId).toBeInTheDocument();
     expect(pokemonName).toBeInTheDocument();
-    expect(pokemonType).toBeInTheDocument();
   })
 });

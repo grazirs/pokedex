@@ -18,7 +18,7 @@ export const getPokemonData = async (url) => {
   }
 };
 
-export const searchPokemons = async (pokemon) => {
+export const searchPokemon = async (pokemon) => {
   try {
     const response = await fetch(`${API_URL}/pokemon/${pokemon}`);
     return await response.json();
